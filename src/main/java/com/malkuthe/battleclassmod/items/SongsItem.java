@@ -6,20 +6,19 @@ import com.malkuthe.battleclassmod.BCMInfo;
 import com.malkuthe.battleclassmod.BattleClassMod;
 import com.malkuthe.battleclassmod.items.crafting.BCMClasses;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class SongsItem extends Item{
 	
-	Icon[] icons;
+	IIcon[] icons;
 	
-	public SongsItem(int id){
-		super(id);
+	public SongsItem(){
 		setCreativeTab(BattleClassMod.tabCustom);
 		setMaxStackSize(16);
 		setHasSubtypes(true);
@@ -33,8 +32,8 @@ public class SongsItem extends Item{
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister icon){
-		icons  = new Icon[BCMClasses.SONGS_NUMBER];
+	public void registerIcons(IIconRegister icon){
+		icons  = new IIcon[BCMClasses.SONGS_NUMBER];
 		
 		for (int i = 0; i < icons.length; ++i){
 			icons[i] = icon.registerIcon(BCMInfo.ID + ":" + ItemInfo.songsItemUnlocalized[i]);
@@ -43,14 +42,14 @@ public class SongsItem extends Item{
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Icon getIconFromDamage(int damage){
+	public IIcon getIconFromDamage(int damage){
 		return icons[damage];
 	}
 	
 	@Override
-	public void getSubItems(int id, CreativeTabs tab, List list){
+	public void getSubItems(Item item, CreativeTabs tab, List list){
 		for (int i = 0; i < icons.length; ++i){
-			ItemStack itemstack = new ItemStack(id, 1, i);
+			ItemStack itemstack = new ItemStack(item, 1, i);
 			list.add(itemstack);
 		}
 	}

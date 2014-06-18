@@ -10,10 +10,10 @@ import com.malkuthe.battleclassmod.config.Configs;
 import com.malkuthe.battleclassmod.inventories.BCMInterfaceInventory;
 import com.malkuthe.battleclassmod.items.crafting.BCMClasses;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.attributes.AttributeInstance;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -22,15 +22,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BoonItem extends Item {
 	
-	public BoonItem(int id){
-		super(id);
+	public BoonItem(){
 		setCreativeTab(null);
 		setMaxStackSize(1);
 		setUnlocalizedName(ItemInfo.boonItemUnlocalized);
@@ -45,7 +44,7 @@ public class BoonItem extends Item {
 		PlayerClass props = PlayerClass.get(player);
 		String playerClass = props.getPlayerClass();
 		
-		AttributeInstance thiefspeed = player.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
+		IAttributeInstance thiefspeed = player.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
 		AttributeModifier speed;
 		
 		BCMInterfaceInventory inventoryCustom = props.inventory;
@@ -53,10 +52,11 @@ public class BoonItem extends Item {
 		speed = new AttributeModifier(player.getPersistentID(), "Thief's Haste", 3.0, 2);
 		if (boonStack != null){
 			NBTTagCompound itemProps = boonStack.stackTagCompound;
+			String playerName = player.getCommandSenderName();
 			String owner = itemProps.getString("Owner");
 			String itemClass = itemProps.getString("Class");
 			
-			if(props.isClassHaste(playerClass) && props.isClassHaste(itemClass) && owner.equals(player.username)){
+			if(props.isClassHaste(playerClass) && props.isClassHaste(itemClass) && owner.equals(playerName)){
 				if(thiefspeed.getModifier(player.getPersistentID()) == null){
 					thiefspeed.applyModifier(speed);
 				} 
@@ -79,16 +79,17 @@ public class BoonItem extends Item {
 	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player){
 		NBTTagCompound properties = itemstack.stackTagCompound;
 		String owner = properties.getString("Owner");
+		String playerName = player.getCommandSenderName();
 		System.out.println(owner);
 		if (!world.isRemote && itemstack != null){
 			if(player.isSneaking()){
-				if(!owner.equals(player.username) && owner.equals("none")){
-					properties.setString("Owner", player.username);
+				if(!owner.equals(playerName) && owner.equals("none")){
+					properties.setString("Owner", playerName);
 					String newowner = properties.getString("Owner");
 					System.out.println("Boon Owner set to:" + newowner);
-				} else if (!owner.equals(player.username) && !owner.equals("none")){
+				} else if (!owner.equals(playerName) && !owner.equals("none")){
 					
-				} else if (owner.equals(player.username)){
+				} else if (owner.equals(playerName)){
 					PlayerClass props = PlayerClass.get(player);
 					if(properties.getString("Class") == null){
 						props.ClassChange(Configs.defaultClass);
@@ -104,13 +105,13 @@ public class BoonItem extends Item {
 		return itemstack;
 	}
 	
-	private Icon[] iconIndex;
+	private IIcon[] iconIndex;
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister register){
+	public void registerIcons(IIconRegister register){
 		
-		iconIndex = new Icon[2];
+		iconIndex = new IIcon[2];
 		
 		//registering the two icons
 		iconIndex[0] = register.registerIcon(BCMInfo.ID + ":" + ItemInfo.boonItemUnlocalized);
@@ -121,7 +122,7 @@ public class BoonItem extends Item {
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Icon getIcon(ItemStack itemstack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining){
+	public IIcon getIcon(ItemStack itemstack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining){
 		NBTTagCompound properties = itemstack.stackTagCompound;
 		this.itemIcon = iconIndex[0];
 		if (properties != null){
@@ -136,7 +137,7 @@ public class BoonItem extends Item {
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Icon getIconIndex(ItemStack itemstack){
+	public IIcon getIconIndex(ItemStack itemstack){
 		NBTTagCompound properties = itemstack.stackTagCompound;
 		this.itemIcon = iconIndex[0];
 		if (properties != null){
@@ -169,11 +170,12 @@ public class BoonItem extends Item {
 		if (itemstack.stackTagCompound != null){
 			NBTTagCompound properties = itemstack.stackTagCompound;
 			String owner = properties.getString("Owner");
+			String playerName = player.getCommandSenderName();
 			String bcmclass = properties.getString("Class");
 			int level = properties.getInteger("Level");
 			int tributes = properties.getInteger("Tributes");
 			
-			if( owner == player.username ){
+			if( owner == playerName ){
 				list.add("Owner: " + EnumChatFormatting.BLUE + owner);
 			} else if ( owner == "none" ){
 				list.add("Owner: " + EnumChatFormatting.YELLOW + owner);

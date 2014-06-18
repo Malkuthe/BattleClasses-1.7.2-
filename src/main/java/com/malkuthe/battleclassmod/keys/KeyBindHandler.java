@@ -26,9 +26,10 @@ public class KeyBindHandler{
 	@SubscribeEvent
 	public void onKeyInput(InputEvent.KeyInputEvent event){
 		if (!FMLClientHandler.instance().isGUIOpen(GuiChat.class)){
+			String guiID = (new Integer(BattleClassMod.GUI_CLASS_INTERFACE_INV)).toString();
 			int kb = Keyboard.getEventKey();
 			if (kb == openBCMInterface.getKeyCode()){
-				BCMPacketHandler.INSTANCE.sendToServer(new BCMInterfaceMessage(BattleClassMod.GUI_CLASS_INTERFACE_INV));
+				BCMPacketHandler.INSTANCE.sendToServer(new BCMInterfaceMessage(guiID));
 			}
 		}
 	}

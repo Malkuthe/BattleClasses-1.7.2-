@@ -2,7 +2,7 @@ package com.malkuthe.battleclassmod.items.crafting;
 
 import java.util.HashMap;
 
-import com.malkuthe.battleclassmod.items.Items;
+import com.malkuthe.battleclassmod.items.BCMItems;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

@@ -1,7 +1,7 @@
 package com.malkuthe.battleclassmod.network.message;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.EntityPlayer;
 
 import com.malkuthe.battleclassmod.BattleClassMod;
 
@@ -12,30 +12,31 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public class BCMInterfaceMessage implements IMessage, IMessageHandler<BCMInterfaceMessage, IMessage>{
 	
-	private int guiID;
+	private String guiID;
 	
 	public BCMInterfaceMessage () {
 		
 	}
 	
-	public BCMInterfaceMessage(int i){
-		this.guiID = i;
+	public BCMInterfaceMessage(String string){
+		this.guiID = string;
 	}
 
 	@Override
 	public void fromBytes(ByteBuf buf) {
-		guiID = ByteBufUtils.readVarInt(buf, 8);
+		guiID = ByteBufUtils.readUTF8String(buf);
 	}
 
 	@Override
 	public void toBytes(ByteBuf buf) {
-		ByteBufUtils.writeVarInt(buf, guiID, 8);
+		ByteBufUtils.writeUTF8String(buf, guiID);
 	}
 
 	@Override
 	public IMessage onMessage(BCMInterfaceMessage message, MessageContext ctx) {
-		EntityPlayerMP player = ctx.getServerHandler().playerEntity;
-		player.openGui(BattleClassMod.instance, message.guiID, player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
+		EntityPlayer player = ctx.getServerHandler().playerEntity;
+		Integer id = Integer.parseInt(message.guiID);
+		player.openGui(BattleClassMod.instance, id, player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
 		return null;
 	}
 

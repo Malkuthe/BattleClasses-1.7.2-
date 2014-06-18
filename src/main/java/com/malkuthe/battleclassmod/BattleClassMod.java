@@ -5,7 +5,7 @@ import java.io.File;
 import com.malkuthe.battleclassmod.commands.CommandHandler;
 import com.malkuthe.battleclassmod.config.ConfigHandler;
 import com.malkuthe.battleclassmod.guis.BCMGuiHandler;
-import com.malkuthe.battleclassmod.items.Items;
+import com.malkuthe.battleclassmod.items.BCMItems;
 import com.malkuthe.battleclassmod.items.crafting.BCMClasses;
 import com.malkuthe.battleclassmod.items.crafting.BoonCraftingHandler;
 import com.malkuthe.battleclassmod.util.BCMClassConfigHandler;
@@ -45,8 +45,8 @@ public class BattleClassMod {
 		} else {
 			System.out.println("[BCM] classConfig.xml detected. Not creating new file.");
 		}
-		Items.init();
-		Items.addNames();
+		BCMItems.init();
+		BCMItems.addNames();
 		LanguageRegistry.instance();
 	}
 

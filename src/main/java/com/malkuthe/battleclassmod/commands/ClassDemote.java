@@ -1,12 +1,12 @@
 package com.malkuthe.battleclassmod.commands;
 
-import com.malkuthe.battleclassmod.PlayerClass;
-import com.malkuthe.battleclassmod.config.Configs;
-
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntityCommandBlock;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+
+import com.malkuthe.battleclassmod.PlayerClass;
 
 public class ClassDemote extends IBCMCommands {
 
@@ -29,7 +29,7 @@ public class ClassDemote extends IBCMCommands {
 	public void ProcessPlayer(EntityPlayer player, String[] params) {
 		
 		if (params.length != 1){
-			player.addChatMessage(EnumChatFormatting.RED + "[ERROR] bcmdemote <user>");
+			player.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "[ERROR] bcmdemote <user>"));
 		} else if (params.length == 1){
 			EntityPlayer entityplayermp = getPlayer(player, params[0]);
 			if (entityplayermp == player){

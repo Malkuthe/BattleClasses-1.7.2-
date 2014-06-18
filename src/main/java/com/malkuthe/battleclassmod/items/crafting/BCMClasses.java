@@ -14,7 +14,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import com.malkuthe.battleclassmod.config.Configs;
-import com.malkuthe.battleclassmod.items.Items;
+import com.malkuthe.battleclassmod.items.BCMItems;
 import com.malkuthe.battleclassmod.util.BCMClassConfigHandler;
 
 public class BCMClasses {
@@ -87,18 +87,18 @@ public class BCMClasses {
 	}
 	
 	public static Object[] songs = {
-		new ItemStack(Items.songsItem,1,0),
-		new ItemStack(Items.songsItem,1,1),
-		new ItemStack(Items.songsItem,1,2),
-		new ItemStack(Items.songsItem,1,3),
-		new ItemStack(Items.songsItem,1,4),
-		new ItemStack(Items.songsItem,1,5),
-		new ItemStack(Items.songsItem,1,6),
-		new ItemStack(Items.songsItem,1,7),
-		new ItemStack(Items.songsItem,1,8),
-		new ItemStack(Items.songsItem,1,9),
-		new ItemStack(Items.songsItem,1,10),
-		new ItemStack(Items.songsItem,1,11)
+		new ItemStack(BCMItems.songsItem,1,0),
+		new ItemStack(BCMItems.songsItem,1,1),
+		new ItemStack(BCMItems.songsItem,1,2),
+		new ItemStack(BCMItems.songsItem,1,3),
+		new ItemStack(BCMItems.songsItem,1,4),
+		new ItemStack(BCMItems.songsItem,1,5),
+		new ItemStack(BCMItems.songsItem,1,6),
+		new ItemStack(BCMItems.songsItem,1,7),
+		new ItemStack(BCMItems.songsItem,1,8),
+		new ItemStack(BCMItems.songsItem,1,9),
+		new ItemStack(BCMItems.songsItem,1,10),
+		new ItemStack(BCMItems.songsItem,1,11)
 	};
 	
 	/*
@@ -148,5 +148,5 @@ public class BCMClasses {
 		{songs[0],songs[7],songs[10],songs[11]}
 	};
 	
-	Item boonItem = Items.boonItem;
+	Item boonItem = BCMItems.boonItem;
 }

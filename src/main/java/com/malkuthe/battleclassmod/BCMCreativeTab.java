@@ -3,7 +3,7 @@ package com.malkuthe.battleclassmod;
 import java.util.List;
 
 import com.malkuthe.battleclassmod.config.Configs;
-import com.malkuthe.battleclassmod.items.Items;
+import com.malkuthe.battleclassmod.items.BCMItems;
 import com.malkuthe.battleclassmod.items.crafting.BCMClasses;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -21,7 +21,7 @@ public class BCMCreativeTab extends CreativeTabs{
 	
 	@SideOnly(Side.CLIENT)
 	public Item getTabIconItem() {
-		return Items.boonItem;
+		return BCMItems.boonItem;
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -29,7 +29,7 @@ public class BCMCreativeTab extends CreativeTabs{
 		String[] defaultclasses = BCMClasses.defaultClasses;
 		for (int i = 0; i < 8; ++i){
 			if (i == 8){
-				ItemStack boonStack = new ItemStack(Items.boonItem, 1, 0);
+				ItemStack boonStack = new ItemStack(BCMItems.boonItem, 1, 0);
 				boonStack.setTagCompound(new NBTTagCompound());
 				boonStack.stackTagCompound.setString("Owner", "none");
 				boonStack.stackTagCompound.setString("Class", Configs.defaultClass);
@@ -37,7 +37,7 @@ public class BCMCreativeTab extends CreativeTabs{
 				boonStack.stackTagCompound.setInteger("Tributes", 0);
 				itemList.add(boonStack);
 			} else if (i < 8) {
-				ItemStack boonStack = new ItemStack(Items.boonItem, 1, 0);
+				ItemStack boonStack = new ItemStack(BCMItems.boonItem, 1, 0);
 				boonStack.setTagCompound(new NBTTagCompound());
 				boonStack.stackTagCompound.setString("Owner", "none");
 				boonStack.stackTagCompound.setString("Class", defaultclasses[i]);
@@ -47,7 +47,7 @@ public class BCMCreativeTab extends CreativeTabs{
 			}
 		}
 		
-		addMetaDataItems(itemList, Items.songsItem, 12);
+		addMetaDataItems(itemList, BCMItems.songsItem, 12);
 	}
 	
 	public void addMetaDataItems(List itemList, Item item, int range){

@@ -58,7 +58,7 @@ public class BCMInterfaceInventory implements IInventory{
 				setInventorySlotContents(slot, null);
 			}
 
-			this.onInventoryChanged();
+			this.markDirty();
 			
 		}
 		
@@ -84,17 +84,17 @@ public class BCMInterfaceInventory implements IInventory{
 			itemstack.stackSize = this.getInventoryStackLimit();
 		}
 		
-		this.onInventoryChanged();
+		this.markDirty();
 		
 	}
 
 	@Override
-	public String getInvName() {
+	public String getInventoryName() {
 		return invName;
 	}
 
 	@Override
-	public boolean isInvNameLocalized() {
+	public boolean hasCustomInventoryName() {
 		return invName.length() > 0;
 	}
 
@@ -105,7 +105,7 @@ public class BCMInterfaceInventory implements IInventory{
 	}
 
 	@Override
-	public void onInventoryChanged() {
+	public void markDirty() {
 		for (int i = 0; i < this.getSizeInventory(); ++i) {
 			if (this.getStackInSlot(i) != null && this.getStackInSlot(i).stackSize == 0){
 				this.setInventorySlotContents(i, null);
@@ -120,12 +120,12 @@ public class BCMInterfaceInventory implements IInventory{
 	}
 
 	@Override
-	public void openChest() {
+	public void openInventory() {
 		
 	}
 
 	@Override
-	public void closeChest() {
+	public void closeInventory() {
 		
 	}
 
@@ -152,10 +152,10 @@ public class BCMInterfaceInventory implements IInventory{
 	}
 	
 	public void readFromNBT(NBTTagCompound compound){
-		NBTTagList items = compound.getTagList(invTagName);
+		NBTTagList items = compound.getTagList(invTagName, compound.getId());
 		
 		for (int i = 0; i < items.tagCount(); ++i){
-			NBTTagCompound item = (NBTTagCompound) items.tagAt(i);
+			NBTTagCompound item = (NBTTagCompound) items.getCompoundTagAt(i);
 			byte slot = item.getByte("Slot");
 			if ( slot >= 0 && slot < getSizeInventory() ){
 				inventory[slot] = ItemStack.loadItemStackFromNBT(item);

@@ -1,14 +1,12 @@
 package com.malkuthe.battleclassmod.items.crafting;
 
-import java.util.HashMap;
-
-import com.malkuthe.battleclassmod.config.Configs;
-import com.malkuthe.battleclassmod.items.ItemInfo;
-import com.malkuthe.battleclassmod.items.Items;
-
-import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+
+import com.malkuthe.battleclassmod.config.Configs;
+import com.malkuthe.battleclassmod.items.BCMItems;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ClassHandler {
@@ -16,8 +14,8 @@ public class ClassHandler {
 	private static final int CLASSES_NUMBER = Configs.classNumber;
 	private static final int INGREDIENTS_NUMBER = 4;
 	
-	static ItemStack gold = new ItemStack(Item.ingotGold);
-	static ItemStack heart = new ItemStack(Items.songsItem,1,0);
+	static ItemStack gold = new ItemStack(Items.gold_ingot);
+	static ItemStack heart = new ItemStack(BCMItems.songsItem,1,0);
 	private static Object[][] classRecipe = BCMClasses.classRecipes;
 	private static String[] boonClass;
 	
@@ -29,7 +27,7 @@ public class ClassHandler {
 			classRecipe[classnum][i] = BCMClasses.classRecipes[classnum][i];
 		}
 		
-		ItemStack boonItem = new ItemStack(Items.boonItem);
+		ItemStack boonItem = new ItemStack(BCMItems.boonItem);
 		boonItem.setTagCompound(new NBTTagCompound());
 		NBTTagCompound properties = boonItem.stackTagCompound;
 		properties.setString("Class", bcmBoonClass);

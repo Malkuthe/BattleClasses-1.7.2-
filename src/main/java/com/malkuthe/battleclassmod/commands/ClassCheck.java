@@ -3,13 +3,14 @@ package com.malkuthe.battleclassmod.commands;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.malkuthe.battleclassmod.PlayerClass;
-
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntityCommandBlock;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+
+import com.malkuthe.battleclassmod.PlayerClass;
 
 public class ClassCheck extends IBCMCommands {
 	
@@ -52,7 +53,7 @@ public class ClassCheck extends IBCMCommands {
 			PlayerClass props = PlayerClass.get(player);
 			props.ClassCheck();
 		} else {
-			player.addChatMessage(EnumChatFormatting.RED + "Wrong command usage!");
+			player.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + "Wrong command usage!"));
 		}
 	}
 
