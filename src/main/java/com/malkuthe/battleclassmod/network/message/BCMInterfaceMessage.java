@@ -35,8 +35,8 @@ public class BCMInterfaceMessage implements IMessage, IMessageHandler<BCMInterfa
 	@Override
 	public IMessage onMessage(BCMInterfaceMessage message, MessageContext ctx) {
 		EntityPlayer player = ctx.getServerHandler().playerEntity;
-		Integer id = Integer.parseInt(message.guiID);
-		player.openGui(BattleClassMod.instance, id, player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
+		Integer gid = Integer.parseInt(message.guiID);
+		player.openGui(BattleClassMod.instance, gid, player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
 		return null;
 	}
 
