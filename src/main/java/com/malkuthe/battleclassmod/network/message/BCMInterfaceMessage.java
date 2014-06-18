@@ -13,6 +13,7 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 public class BCMInterfaceMessage implements IMessage, IMessageHandler<BCMInterfaceMessage, IMessage>{
 	
 	private String guiID;
+
 	
 	public BCMInterfaceMessage () {
 		
@@ -24,12 +25,13 @@ public class BCMInterfaceMessage implements IMessage, IMessageHandler<BCMInterfa
 
 	@Override
 	public void fromBytes(ByteBuf buf) {
-		guiID = ByteBufUtils.readUTF8String(buf);
+		this.guiID = ByteBufUtils.readUTF8String(buf);
+		
 	}
 
 	@Override
 	public void toBytes(ByteBuf buf) {
-		ByteBufUtils.writeUTF8String(buf, guiID);
+		ByteBufUtils.writeUTF8String(buf, this.guiID);
 	}
 
 	@Override
