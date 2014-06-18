@@ -13,7 +13,7 @@ public class BCMItems{
 	public static Item songsItem;
 	
 	public static void init(){
-		boonItem = new BoonItem().setTextureName(BCMInfo.ID + ":" + ItemInfo.boonItemUnlocalized);
+		boonItem = new BoonItem();
 		songsItem = new SongsItem();
 	}
 	

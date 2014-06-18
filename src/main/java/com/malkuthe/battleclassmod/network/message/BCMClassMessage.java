@@ -1,6 +1,7 @@
 package com.malkuthe.battleclassmod.network.message;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -36,7 +37,7 @@ public class BCMClassMessage implements IMessage, IMessageHandler<BCMClassMessag
 	
 	@Override
 	public IMessage onMessage(BCMClassMessage message, MessageContext ctx) {
-		PlayerClass.get(ctx.getServerHandler().playerEntity).loadNBTData(message.playerData);
+		PlayerClass.get(Minecraft.getMinecraft().thePlayer).loadNBTData(message.playerData);
 		return null;
 	}
 

@@ -105,6 +105,7 @@ public class BoonItem extends Item {
 		return itemstack;
 	}
 	
+	@SideOnly(Side.CLIENT)
 	private IIcon[] iconIndex;
 	
 	@Override
@@ -124,14 +125,13 @@ public class BoonItem extends Item {
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(ItemStack itemstack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining){
 		NBTTagCompound properties = itemstack.stackTagCompound;
-		this.itemIcon = iconIndex[0];
 		if (properties != null){
 			if (properties.getString("Owner") != null && !properties.getString("Owner").equals("none")){
 				return iconIndex[1];
 			} 
 			return iconIndex[0];
 		}
-		return this.itemIcon;
+		return iconIndex[0];
 			
 	}
 	
@@ -139,16 +139,16 @@ public class BoonItem extends Item {
 	@SideOnly(Side.CLIENT)
 	public IIcon getIconIndex(ItemStack itemstack){
 		NBTTagCompound properties = itemstack.stackTagCompound;
-		this.itemIcon = iconIndex[0];
 		if (properties != null){
 			if (properties.getString("Owner") != null && !properties.getString("Owner").equals("none")){
 				return iconIndex[1];
 			} 
 			return iconIndex[0];
 		}
-		return this.itemIcon;
+		return iconIndex[0];
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack itemstack){
 		if(itemstack.stackTagCompound != null){

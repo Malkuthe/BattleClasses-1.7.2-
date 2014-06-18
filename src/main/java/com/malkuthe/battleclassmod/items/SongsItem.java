@@ -46,7 +46,9 @@ public class SongsItem extends Item{
 		return icons[damage];
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item item, CreativeTabs tab, List list){
 		for (int i = 0; i < icons.length; ++i){
 			ItemStack itemstack = new ItemStack(item, 1, i);

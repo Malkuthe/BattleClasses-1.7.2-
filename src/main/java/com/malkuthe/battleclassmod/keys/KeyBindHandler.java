@@ -30,6 +30,7 @@ public class KeyBindHandler{
 			int kb = Keyboard.getEventKey();
 			if (kb == openBCMInterface.getKeyCode()){
 				BCMPacketHandler.INSTANCE.sendToServer(new BCMInterfaceMessage(guiID));
+				System.out.println("ButtonPressed!");
 			}
 		}
 	}

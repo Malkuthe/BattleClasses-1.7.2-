@@ -8,6 +8,7 @@ import com.malkuthe.battleclassmod.guis.BCMGuiHandler;
 import com.malkuthe.battleclassmod.items.BCMItems;
 import com.malkuthe.battleclassmod.items.crafting.BCMClasses;
 import com.malkuthe.battleclassmod.items.crafting.BoonCraftingHandler;
+import com.malkuthe.battleclassmod.network.BCMPacketHandler;
 import com.malkuthe.battleclassmod.util.BCMClassConfigHandler;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -45,6 +46,7 @@ public class BattleClassMod {
 		} else {
 			System.out.println("[BCM] classConfig.xml detected. Not creating new file.");
 		}
+		BCMPacketHandler.Init();
 		BCMItems.init();
 		BCMItems.addNames();
 		LanguageRegistry.instance();
