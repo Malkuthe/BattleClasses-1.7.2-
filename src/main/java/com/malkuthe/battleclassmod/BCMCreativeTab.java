@@ -23,7 +23,12 @@ public class BCMCreativeTab extends CreativeTabs{
 	public Item getTabIconItem() {
 		return BCMItems.boonItem;
 	}
-	
+
+	/*
+
+		I'm not sure what you are trying to do with this... But it's not right.
+
+
 	@SideOnly(Side.CLIENT)
 	public void displayAllReleventItems(List itemList){
 		String[] defaultclasses = BCMClasses.defaultClasses;
@@ -46,14 +51,14 @@ public class BCMCreativeTab extends CreativeTabs{
 				itemList.add(boonStack);
 			}
 		}
-		
+
 		addMetaDataItems(itemList, BCMItems.songsItem, 12);
 	}
-	
+
 	public void addMetaDataItems(List itemList, Item item, int range){
 		for (int i = 0; i < range; ++i){
 			itemList.add(new ItemStack(item, 1, i));
 		}
 	}
-
+*/
 }

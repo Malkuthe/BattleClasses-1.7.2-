@@ -62,17 +62,14 @@ public class BCMClasses {
 				public void characters(char ch[], int start, int length) throws SAXException {
 					 
 					if (bClassName) {
-						System.out.println("Class : " + new String(ch, start, length));
 						bClassName = false;
 					}
 			 
 					if (bColour) {
-						System.out.println("Colour : " + new String(ch, start, length));
 						bColour = false;
 					}
 			 
 					if (bTag) {
-						System.out.println("Tag : " + new String(ch, start, length));
 						bTag = false;
 					}
 			 
@@ -101,6 +98,19 @@ public class BCMClasses {
 		new ItemStack(BCMItems.songsItem,1,11)
 	};
 	
+	public static final String[] defaultClasses = {
+		"Squire", "Apprentice", "Thief", "Archer",
+		"Knight", "Mage", "Rogue", "Hunter"
+	};
+	
+	public static final String[] tierTwoClasses = {
+		"Knight", "Mage", "Rogue", "Hunter"
+	};
+	
+	public static final String[] HasteClasses ={
+		"Thief", "Rogue"
+	};
+
 	/*
 	 * 0 - Song of Virtue
 	 * 1 - Song of Courage
@@ -115,19 +125,6 @@ public class BCMClasses {
 	 * 10 - Song of Might
 	 * 11 - Song of Divinity
 	 */
-	
-	public static final String[] defaultClasses = {
-		"Squire", "Apprentice", "Thief", "Archer",
-		"Knight", "Mage", "Rogue", "Hunter"
-	};
-	
-	public static final String[] tierTwoClasses = {
-		"Knight", "Mage", "Rogue", "Hunter"
-	};
-	
-	public static final String[] HasteClasses ={
-		"Thief", "Rogue"
-	};
 
 	public static final Object[][] classRecipes = {
 		//Squire
