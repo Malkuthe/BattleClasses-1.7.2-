@@ -39,6 +39,7 @@ public class BattleClassMod {
 	@EventHandler
 	public void preInit( FMLPreInitializationEvent event ){
 		ConfigHandler.Init(event.getSuggestedConfigurationFile());
+		BCMItems.init();
 		this.confPath = event.getModConfigurationDirectory();
 		File classconf = new File(this.confPath + this.classConfigPath);
 		if (!classconf.isFile() || !classconf.exists()){
@@ -47,8 +48,6 @@ public class BattleClassMod {
 			System.out.println("[BCM] classConfig.xml detected. Not creating new file.");
 		}
 		BCMPacketHandler.Init();
-		BCMItems.init();
-		BCMItems.addNames();
 		LanguageRegistry.instance();
 	}
 

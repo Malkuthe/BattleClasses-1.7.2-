@@ -43,13 +43,15 @@ public class BoonItem extends Item {
 		EntityPlayer player = (EntityPlayer) entity;
 		PlayerClass props = PlayerClass.get(player);
 		String playerClass = props.getPlayerClass();
+		String thief = "thiefspeed";
+		UUID thiefSpeed = UUID.fromString(thief);
 		
 		IAttributeInstance thiefspeed = player.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
 		AttributeModifier speed;
 		
 		BCMInterfaceInventory inventoryCustom = props.inventory;
 		ItemStack boonStack = inventoryCustom.getStackInSlot(0);
-		speed = new AttributeModifier(player.getPersistentID(), "Thief's Haste", 3.0, 2);
+		speed = new AttributeModifier(thiefSpeed, "Thief's Haste", 3.0, 2);
 		if (boonStack != null){
 			NBTTagCompound itemProps = boonStack.stackTagCompound;
 			String playerName = player.getCommandSenderName();
@@ -57,10 +59,10 @@ public class BoonItem extends Item {
 			String itemClass = itemProps.getString("Class");
 			
 			if(props.isClassHaste(playerClass) && props.isClassHaste(itemClass) && owner.equals(playerName)){
-				if(thiefspeed.getModifier(player.getPersistentID()) == null){
+				if(thiefspeed.getModifier(thiefSpeed) == null){
 					thiefspeed.applyModifier(speed);
 				} 
-			} else if(thiefspeed.getModifier(player.getPersistentID()) != null){
+			} else if(thiefspeed.getModifier(thiefSpeed) != null){
 				thiefspeed.removeModifier(speed);
 			}
 		} else if(thiefspeed.getModifier(player.getPersistentID()) != null){
@@ -121,6 +123,10 @@ public class BoonItem extends Item {
 		System.out.println(iconIndex[1]);
 	}
 	
+	/*
+	 * These methods are the ones causing the NPE.
+	 * Particularly, the default return statements.
+	 * 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(ItemStack itemstack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining){
@@ -146,7 +152,7 @@ public class BoonItem extends Item {
 			return iconIndex[0];
 		}
 		return iconIndex[0];
-	}
+	}*/
 	
 	@Override
 	@SideOnly(Side.CLIENT)
