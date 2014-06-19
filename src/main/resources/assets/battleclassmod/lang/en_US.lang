@@ -1,3 +1,16 @@
-item.bcmBoonItem.name=Gods' Boon
+item.boon.name=Gods' Boon
+item.boonActive.name=Gods' Boon
+item.virtue.name=Song of Virtue
+item.courage.name=Song of Courage
+item.rage.name=Song of Rage
+item.healing.name=Song of Healing
+item.wisdom.name=Song of Wisdom
+item.knowledge.name=Song of Knowledge
+item.celerity.name=Song of Celerity
+item.acuity.name=Song of Acuity
+item.agility.name=Song of Agility
+item.strength.name=Song of Strength
+item.might.name=Song of Might
+item.divinity.name=Song of Divinity
 
-itemGroup.battleClasses.name=Battle Classes
+itemGroup.battleClasses=Battle Classes

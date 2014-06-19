@@ -52,8 +52,6 @@ public class BCMClassConfigHandler {
 	         DOMSource source = new DOMSource(doc);
 	         StreamResult result = new StreamResult(classConfig);
 	         transformer.transform(source, result);
-	 
-	         System.out.println("\nXML DOM Created Successfully..");
 			
 			
 			

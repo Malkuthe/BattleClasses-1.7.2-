@@ -1,5 +1,6 @@
 package com.malkuthe.battleclassmod.items.crafting;
 
+import com.malkuthe.battleclassmod.items.BoonItem;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -28,16 +29,20 @@ public class ClassHandler {
 		}
 		
 		ItemStack boonItem = new ItemStack(BCMItems.boonItem);
-		boonItem.setTagCompound(new NBTTagCompound());
-		NBTTagCompound properties = boonItem.stackTagCompound;
-		properties.setString("Class", bcmBoonClass);
-		properties.setString("Owner", "none");
-		properties.setInteger("Level", 1);
-		properties.setInteger("Tributes", 0);
-		
-		GameRegistry.addRecipe(boonItem, "xax", "boc", "xdx", 'x', gold, 'o', heart, 'a', classRecipe[classnum][0],
-				'b', classRecipe[classnum][1], 'c', classRecipe[classnum][2], 'd',classRecipe[classnum][3]);
-		System.out.println("Added Recipe");
+		boonItem.stackTagCompound = generateNBTTagCompoundWithClass(bcmBoonClass);
+
+		GameRegistry.addRecipe(boonItem, "xax", "boc", "xdx", 'x', gold, 'o', heart, 'a', classRecipe[classnum][0], 'b', classRecipe[classnum][1], 'c', classRecipe[classnum][2], 'd',
+				classRecipe[classnum][3]);
+
 	}
 
+	private static NBTTagCompound generateNBTTagCompoundWithClass(String playerclass)
+	{
+		NBTTagCompound nbt = new NBTTagCompound();
+		nbt.setString("Owner", "none");
+		nbt.setString("Class", playerclass);
+		nbt.setInteger("Level", 1);
+		nbt.setInteger("Tributes", 0);
+		return nbt;
+	}
 }

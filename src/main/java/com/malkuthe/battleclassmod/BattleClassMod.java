@@ -32,7 +32,7 @@ public class BattleClassMod {
 	public static final int GUI_CLASS_INTERFACE_INV = modGuiIndex++;
 	public static final String classConfigPath = "\\battleclassmodClassConfig.xml";
 	public static File confPath;
-	
+
 	@Instance(BCMInfo.ID)
 	public static BattleClassMod instance = new BattleClassMod();
 	
@@ -40,8 +40,8 @@ public class BattleClassMod {
 	public void preInit( FMLPreInitializationEvent event ){
 		ConfigHandler.Init(event.getSuggestedConfigurationFile());
 		BCMItems.init();
-		this.confPath = event.getModConfigurationDirectory();
-		File classconf = new File(this.confPath + this.classConfigPath);
+		confPath = event.getModConfigurationDirectory();
+		File classconf = new File(confPath + classConfigPath);
 		if (!classconf.isFile() || !classconf.exists()){
 			BCMClassConfigHandler.ClassCreate();
 		} else {
